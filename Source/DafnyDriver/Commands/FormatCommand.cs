@@ -106,11 +106,11 @@ Use '--print' to output the content of the formatted files instead of overwritin
         await errorWriter.WriteLineAsync(err);
         failedToParseFiles.Add(dafnyFile.BaseName);
       } else {
-        var firstToken = dafnyProgram.GetFirstTokenForUri(file.Uri);
+        var firstToken = dafnyProgram.GetFirstTokenForUri(dafnyFile.Uri);
         var result = originalText;
         if (firstToken != null) {
           result = Formatting.__default.ReindentProgramFromFirstToken(firstToken,
-            IndentationFormatter.ForProgram(dafnyProgram, file.Uri));
+            IndentationFormatter.ForProgram(dafnyProgram, dafnyFile.Uri));
           if (result != originalText) {
             neededFormatting += 1;
             if (doCheck) {
